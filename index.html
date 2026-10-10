@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eleventh Hour — Gifts, delivered when it matters</title>
+<meta name="description" content="Premium gifting, delivered at the exact moment you choose.">
+<meta name="theme-color" content="#fbfbfd">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfbfd; --bg2:#f5f5f7; --card:#ffffff; --ink:#1d1d1f; --ink2:#6e6e73; --ink3:#86868b;
+  --line:#d2d2d7; --line2:#e8e8ed; --blue:#5856d6; --blue-h:#4a48c4; --gold:#5856d6; --red:#d70015; --green:#1d8a4a;
+  --r:22px; --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,"Helvetica Neue","Segoe UI",Arial,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.47;font-size:17px;letter-spacing:-.022em}
+button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:var(--blue);text-decoration:none}
+.hidden{display:none!important}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;height:52px;background:rgba(251,251,253,.8);border-bottom:1px solid rgba(0,0,0,.08);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;font-size:17px;letter-spacing:-.02em;cursor:pointer}
+.logo i{font-style:normal;color:var(--gold)}
+.navlinks{display:flex;gap:28px;align-items:center}
+.navlinks a,.navlinks button{color:var(--ink2);font-size:13px;transition:color .2s}
+.navlinks a:hover,.navlinks button:hover{color:var(--ink)}
+.pill{background:var(--blue);color:#fff!important;padding:5px 14px;border-radius:980px;font-weight:500}
+.pill:hover{background:var(--blue-h)}
+@media(max-width:640px){.navlinks .hide-m{display:none}.navlinks{gap:16px}}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 24px;border-radius:980px;font-size:17px;font-weight:500;transition:all .25s var(--ease);background:var(--blue);color:#fff}
+.btn:hover{background:var(--blue-h);transform:scale(1.02)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--blue);padding:12px 8px}
+.btn.ghost:hover{text-decoration:underline;transform:none}
+.btn.light{background:transparent;color:var(--blue);padding:16px 12px}
+.btn.light:hover{background:transparent;text-decoration:underline;transform:none}
+.btn.sec{background:var(--bg2);color:var(--ink)}
+.btn.sec:hover{background:#e8e8ed}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.btn.lg{padding:16px 34px;font-size:19px}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#eeedff 0%,var(--bg) 85%);color:var(--ink);text-align:center;padding:90px 0 90px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:-20%;width:900px;height:900px;transform:translateX(-50%);background:radial-gradient(circle,rgba(88,86,214,.16),rgba(88,86,214,.04) 40%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:19px;font-weight:600;color:var(--gold);letter-spacing:-.01em;margin-bottom:10px}
+.hero h1{font-size:clamp(44px,8vw,88px);line-height:1.03;font-weight:700;letter-spacing:-.045em;max-width:900px;margin:0 auto}
+.hero h1 span{color:var(--gold)}
+.hero p.sub{font-size:clamp(19px,2.4vw,26px);color:var(--ink2);max-width:640px;margin:22px auto 0;line-height:1.3;letter-spacing:-.015em}
+.hero .cta{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.clock{margin:64px auto 0;display:inline-flex;flex-direction:column;align-items:center;gap:6px}
+.clock .t{font-size:clamp(56px,11vw,120px);font-weight:200;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1}
+.clock .t b{font-weight:200;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{opacity:.25}}
+.clock .l{font-size:15px;color:var(--ink3)}
+.clock .l em{font-style:normal;color:var(--gold)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* SECTIONS */
+section{padding:100px 0}
+.h2{font-size:clamp(34px,5vw,56px);line-height:1.07;font-weight:700;letter-spacing:-.04em;text-align:center}
+.lead{font-size:clamp(18px,2vw,24px);color:var(--ink2);text-align:center;max-width:620px;margin:16px auto 0;line-height:1.3;letter-spacing:-.015em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+.step{background:var(--bg2);border-radius:var(--r);padding:34px 30px}
+.step .n{font-size:14px;font-weight:600;color:var(--gold);margin-bottom:14px;display:block;letter-spacing:.02em}
+.step h3{font-size:24px;letter-spacing:-.03em;line-height:1.15;margin-bottom:8px}
+.step p{color:var(--ink2);font-size:17px;line-height:1.4}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+
+/* PACKAGES */
+.pk-sec{background:var(--bg2)}
+.pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px;align-items:stretch}
+.pkg{background:var(--card);border-radius:28px;padding:0;display:flex;flex-direction:column;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease);position:relative}
+.pkg:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.1)}
+.pkg .art{height:270px;position:relative;overflow:hidden;background:var(--bg2)}
+.pkg .art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.pkg:hover .art img{transform:scale(1.05)}
+.pkg .body{padding:28px 28px 30px;display:flex;flex-direction:column;flex:1}
+.tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.pkg h3{font-size:28px;letter-spacing:-.035em;line-height:1.1}
+.pkg .desc{color:var(--ink2);font-size:16px;margin:8px 0 18px;line-height:1.4}
+.pkg ul{list-style:none;border-top:1px solid var(--line2);margin-bottom:22px;flex:1}
+.pkg li{padding:10px 0;border-bottom:1px solid var(--line2);font-size:15px;display:flex;gap:10px;align-items:flex-start}
+.pkg li::before{content:"";flex:none;width:16px;height:16px;margin-top:3px;border-radius:50%;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.3l2.3 2.3 4.7-4.9' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.price{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px}
+.price b{font-size:34px;letter-spacing:-.04em;font-weight:600}
+.price span{font-size:14px;color:var(--ink3)}
+.pkg .btn{width:100%}
+.badge{position:absolute;top:16px;right:16px;z-index:2;background:rgba(255,255,255,.92);color:var(--ink);font-size:12px;font-weight:600;padding:5px 12px;border-radius:980px}
+@media(max-width:900px){.pkgs{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}}
+.fine{text-align:center;color:var(--ink3);font-size:14px;margin-top:30px}
+
+/* CATEGORIES */
+.cats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.cats.small{justify-content:flex-start;margin:0 0 18px}
+.chip{padding:10px 20px;border-radius:980px;background:#fff;color:var(--ink);font-size:15px;font-weight:500;border:1px solid var(--line2);transition:all .25s var(--ease)}
+.pk-sec .chip{border-color:transparent}
+.chip:hover{border-color:var(--line)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cat-line{text-align:center;color:var(--ink2);font-size:18px;margin-top:20px;min-height:27px}
+.pkg{animation:fade .6s var(--ease)}
+/* PROMISE */
+.promise{background:var(--bg);color:var(--ink)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:60px;text-align:center}
+.fact b{display:block;font-size:clamp(40px,5vw,60px);font-weight:600;letter-spacing:-.045em;color:var(--ink)}
+.fact span{color:var(--ink3);font-size:15px}
+@media(max-width:700px){.facts{grid-template-columns:repeat(2,1fr);gap:36px 10px}}
+
+/* TRACK */
+.track{max-width:520px;margin:44px auto 0;display:flex;gap:10px}
+.track input{flex:1}
+#trackResult{max-width:560px;margin:24px auto 0}
+
+/* FOOTER */
+footer{background:var(--bg2);padding:34px 0 44px;font-size:13px;color:var(--ink3);border-top:1px solid var(--line2)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* FORMS */
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;position:relative}
+.field label{font-size:13px;font-weight:500;color:var(--ink2)}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:17px;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2386868b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+textarea{resize:vertical;min-height:96px;line-height:1.4}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(88,86,214,.15)}
+.field.err input,.field.err select,.field.err textarea{border-color:var(--red);box-shadow:0 0 0 4px rgba(215,0,21,.08)}
+.field .msg{font-size:13px;color:var(--red);display:none}
+.field.err .msg{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}
+@media(max-width:560px){.row2,.row3{grid-template-columns:1fr}}
+.counter{position:absolute;right:12px;bottom:10px;font-size:12px;color:var(--ink3)}
+
+/* CHECKOUT */
+#checkout{background:var(--bg);min-height:100vh}
+.co-head{padding:44px 0 10px}
+.co-head h2{font-size:clamp(30px,4.5vw,44px);letter-spacing:-.04em;line-height:1.1}
+.co-head p{color:var(--ink2);margin-top:6px}
+.prog{display:flex;gap:8px;margin:26px 0 8px}
+.prog div{flex:1;height:4px;border-radius:4px;background:var(--line2);overflow:hidden;position:relative}
+.prog div::after{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.prog div.done::after{transform:scaleX(1)}
+.prog-l{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:26px}
+.prog-l span.on{color:var(--ink);font-weight:600}
+.layout{display:grid;grid-template-columns:1fr 380px;gap:36px;align-items:start;padding-bottom:100px}
+@media(max-width:920px){.layout{grid-template-columns:1fr}}
+.panel{background:var(--card);border-radius:var(--r);padding:34px;box-shadow:0 1px 0 var(--line2)}
+@media(max-width:560px){.panel{padding:22px 18px}}
+.panel h3{font-size:24px;letter-spacing:-.03em;margin-bottom:4px}
+.panel .hint{color:var(--ink2);font-size:15px;margin-bottom:24px}
+.panel h4{font-size:15px;font-weight:600;margin:24px 0 12px}
+.step-view{display:none;animation:fade .5s var(--ease)}
+.step-view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:10px}
+
+.opt{display:flex;gap:14px;align-items:center;border:1.5px solid var(--line2);border-radius:16px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:all .2s;background:#fff;position:relative}
+.opt:hover{border-color:var(--line)}
+.opt.sel{border-color:var(--blue);box-shadow:0 0 0 3px rgba(88,86,214,.12)}
+.opt .dot{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);flex:none;display:grid;place-items:center;transition:all .2s}
+.opt.sel .dot{background:var(--blue);border-color:var(--blue)}
+.opt.sel .dot::after{content:"";width:8px;height:8px;background:#fff;border-radius:50%}
+.opt.chk .dot{border-radius:7px}
+.opt.chk.sel .dot::after{width:10px;height:6px;border-radius:0;background:none;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.opt .t{flex:1}
+.opt .t b{display:block;font-weight:600;font-size:16px}
+.opt .t span{font-size:14px;color:var(--ink2);display:block;line-height:1.35}
+.opt .p{font-weight:600;font-size:16px;white-space:nowrap}
+.opt.dis{opacity:.4;pointer-events:none}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.slots .opt{margin:0;padding:14px}
+@media(max-width:560px){.slots{grid-template-columns:1fr}}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink2);margin-top:6px;cursor:pointer}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--blue)}
+
+/* SUMMARY */
+.sum{position:sticky;top:76px;background:var(--card);border-radius:var(--r);padding:28px;box-shadow:0 1px 0 var(--line2)}
+.sum h3{font-size:19px;letter-spacing:-.025em;margin-bottom:16px}
+.sum .pk{display:flex;gap:14px;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line2);margin-bottom:14px}
+.sum .pk .sw{width:54px;height:54px;border-radius:14px;flex:none;background-size:cover;background-position:center}
+.sum .pk b{display:block;font-size:16px}
+.sum .pk span{font-size:13px;color:var(--ink2)}
+.ln{display:flex;justify-content:space-between;font-size:15px;padding:5px 0;color:var(--ink2)}
+.ln.tot{border-top:1px solid var(--line2);margin-top:10px;padding-top:14px;color:var(--ink);font-size:19px;font-weight:600}
+.sum .meta{margin-top:16px;padding-top:16px;border-top:1px solid var(--line2);font-size:14px;color:var(--ink2);line-height:1.5}
+.sum .meta b{color:var(--ink);font-weight:600}
+.secure{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--ink3);margin-top:16px}
+@media(max-width:920px){.sum{position:static;order:-1}}
+
+/* CARD */
+.demo{display:flex;gap:10px;background:#fff8e6;border:1px solid #f0dca6;color:#6b5314;padding:12px 16px;border-radius:14px;font-size:14px;margin-bottom:22px;line-height:1.4}
+.cardnum{position:relative}
+.cardnum .brand{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700;color:var(--ink3);letter-spacing:.04em}
+
+/* CONFIRMATION */
+#confirm{background:var(--bg);min-height:100vh;padding:70px 0 100px;text-align:center}
+.tick{width:92px;height:92px;margin:0 auto 26px}
+.tick circle{fill:none;stroke:var(--green);stroke-width:4;stroke-dasharray:290;stroke-dashoffset:290;animation:draw .8s .1s var(--ease) forwards;transform:rotate(-90deg);transform-origin:center}
+.tick path{fill:none;stroke:var(--green);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s .8s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+#confirm h2{font-size:clamp(34px,5vw,54px);letter-spacing:-.04em;line-height:1.08}
+#confirm .lead{margin-top:12px}
+.ordno{display:inline-block;margin-top:22px;background:var(--bg2);padding:10px 22px;border-radius:980px;font-size:15px;color:var(--ink2)}
+.ordno b{color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.02em;margin-left:4px}
+.receipt{max-width:640px;margin:44px auto 0;background:var(--card);border-radius:var(--r);text-align:left;overflow:hidden;box-shadow:0 1px 0 var(--line2),0 20px 50px rgba(0,0,0,.05)}
+.receipt .sec{padding:26px 32px;border-bottom:1px solid var(--line2)}
+.receipt .sec:last-child{border:0}
+.receipt .k{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.receipt .v{font-size:17px;line-height:1.45}
+.receipt .v small{display:block;color:var(--ink2);font-size:15px}
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.tl{display:flex;gap:14px;position:relative;padding-bottom:18px;font-size:15px}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:"";position:absolute;left:7px;top:18px;bottom:0;width:2px;background:var(--line2)}
+.tl:last-child::before{display:none}
+.tl i{width:16px;height:16px;border-radius:50%;background:var(--line);flex:none;margin-top:3px;position:relative;z-index:1}
+.tl.done i{background:var(--green)}
+.tl small{display:block;color:var(--ink3);font-size:13px}
+.actions{display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.mailnote{max-width:640px;margin:20px auto 0;font-size:14px;color:var(--ink3)}
+@media print{nav,.actions,.mailnote,footer{display:none!important}#confirm{padding:20px}}
+
+/* modal-ish toast */
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);background:rgba(29,29,31,.94);color:#fff;padding:12px 22px;border-radius:980px;font-size:15px;opacity:0;transition:all .4s var(--ease);z-index:100;pointer-events:none;backdrop-filter:blur(10px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.spin{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo" onclick="goHome()" role="link" tabindex="0" aria-label="Eleventh Hour home"><i>●</i> Eleventh Hour</div>
+    <div class="navlinks">
+      <a href="#how" class="hide-m" onclick="goHome('how')">How it works</a>
+      <a href="#packages" class="hide-m" onclick="goHome('packages')">Packages</a>
+      <a href="#track" class="hide-m" onclick="goHome('track')">Track order</a>
+      <a href="#packages" class="pill" onclick="goHome('packages')">Order now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<main id="home">
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Eleventh Hour</div>
+      <h1 class="reveal">Be there at midnight,<br><span>even when you can't.</span></h1>
+      <p class="sub reveal">Plan the perfect surprise. We&rsquo;ll deliver something extraordinary to their door at the exact moment you choose, with your message in hand.</p>
+      <div class="cta reveal">
+        <a class="btn lg" href="#packages" onclick="goHome('packages')">Choose a package</a>
+        <a class="btn lg light" href="#how" onclick="goHome('how')">How it works</a>
+      </div>
+      <div class="clock reveal">
+        <div class="t" id="clock">--<b>:</b>--</div>
+        <div class="l" id="clockLabel">&nbsp;</div>
+      </div>
+    </div>
+  </header>
+
+  <section id="how">
+    <div class="wrap">
+      <h2 class="h2 reveal">Three minutes.<br>One beautiful surprise.</h2>
+      <p class="lead reveal">We handle the sourcing, the wrapping and the white-glove delivery. You just choose who to celebrate.</p>
+      <div class="steps">
+        <div class="step reveal"><span class="n">01</span><h3>Pick a package</h3><p>Three curated collections, each assembled by hand from the finest local makers.</p></div>
+        <div class="step reveal"><span class="n">02</span><h3>Tell us who &amp; when</h3><p>Add their address, choose a delivery moment, and write a message in your own words.</p></div>
+        <div class="step reveal"><span class="n">03</span><h3>We make it arrive</h3><p>A courier in uniform delivers it, on the minute. You get a confirmation right away.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pk-sec" id="packages">
+    <div class="wrap">
+      <h2 class="h2 reveal">Who are you celebrating?</h2>
+      <p class="lead reveal">Choose an occasion. Every package includes a handwritten card, signature wrapping and doorstep delivery.</p>
+      <div class="cats" id="cats" role="tablist" aria-label="Occasion"></div>
+      <p class="cat-line" id="catLine"></p>
+      <div class="pkgs" id="pkgGrid"></div>
+      <p class="fine reveal">Delivery $15 · Midnight delivery +$25 · Taxes calculated at checkout · Order at least 2 hours ahead</p>
+    </div>
+  </section>
+
+  <section class="promise">
+    <div class="wrap">
+      <h2 class="h2 reveal">Built around the moment.</h2>
+      <p class="lead reveal">Premium means precise. Your gift arrives exactly when you intended.</p>
+      <div class="facts">
+        <div class="fact reveal"><b>12:00</b><span>Our most-requested delivery</span></div>
+        <div class="fact reveal"><b>2 hr</b><span>Minimum lead time</span></div>
+        <div class="fact reveal"><b>100%</b><span>Hand-wrapped, every order</span></div>
+        <div class="fact reveal"><b>On time</b><span>Or your delivery fee back</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="track">
+    <div class="wrap">
+      <h2 class="h2 reveal">Already ordered?</h2>
+      <p class="lead reveal">Enter your order number to see the status.</p>
+      <form class="track" onsubmit="trackOrder(event)">
+        <input type="text" id="trackInput" placeholder="11H-XXXXXX" aria-label="Order number" autocapitalize="characters">
+        <button class="btn" type="submit">Track</button>
+      </form>
+      <div id="trackResult"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Eleventh Hour. Demo build — no real orders or charges. Photos via Unsplash contributors.</span>
+      <span>Terms · Privacy · Contact</span>
+    </div>
+  </footer>
+</main>
+
+<!-- ============ CHECKOUT ============ -->
+<div id="checkout" class="hidden">
+  <div class="wrap">
+    <div class="co-head">
+      <a href="#" onclick="event.preventDefault();goHome('packages')" style="font-size:15px">‹ Back to packages</a>
+      <h2 style="margin-top:14px" id="coTitle">Choose your package.</h2>
+      <p id="coSub">Select a package and any finishing touches.</p>
+      <div class="prog" id="prog"><div></div><div></div><div></div><div></div></div>
+      <div class="prog-l" id="progL"><span>Package</span><span>You</span><span>Delivery</span><span>Payment</span></div>
+    </div>
+
+    <div class="layout">
+      <div class="panel">
+
+        <!-- Step 1 -->
+        <form class="step-view" data-step="1" onsubmit="event.preventDefault();next()">
+          <h3>Your package</h3>
+          <p class="hint">Tap to switch. You can change this until you pay.</p>
+          <div class="cats small" id="coCats"></div>
+          <div id="pkgOpts"></div>
+          <h4>Finishing touches</h4>
+          <div id="addonOpts"></div>
+          <div class="nav-btns"><span></span><button class="btn" type="submit">Continue</button></div>
+        </form>
+
+        <!-- Step 2 -->
+        <form class="step-view" data-step="2" onsubmit="event.preventDefault();next()" novalidate>
+          <h3>Your details</h3>
+          <p class="hint">We'll send your confirmation and delivery updates here.</p>
+          <div class="row2">
+            <div class="field"><label for="c_first">First name</label><input type="text" id="c_first" autocomplete="given-name"><span class="msg">Please enter your first name.</span></div>
+            <div class="field"><label for="c_last">Last name</label><input type="text" id="c_last" autocomplete="family-name"><span class="msg">Please enter your last name.</span></div>
+          </div>
+          <div class="field"><label for="c_email">Email</label><input type="email" id="c_email" autocomplete="email" inputmode="email"><span class="msg">Please enter a valid email address.</span></div>
+          <div class="field"><label for="c_phone">Mobile number</label><input type="tel" id="c_phone" autocomplete="tel" inputmode="tel" placeholder="(416) 555-0123"><span class="msg">Please enter a valid phone number.</span></div>
+          <div class="nav-btns"><button type="button" class="btn ghost" onclick="back()">‹ Back</button><button class="btn" type="submit">Continue</button></div>
+        </form>
+
+        <!-- Step 3 -->
+        <form class="step-view" data-step="3" onsubmit="event.preventDefault();next()" novalidate>
+          <h3>Who's it for, and when?</h3>
+          <p class="hint">Tell us where to deliver and the exact moment it should arrive.</p>
+          <div class="row2">
+            <div class="field"><label for="r_name">Recipient's name</label><input type="text" id="r_name" autocomplete="off"><span class="msg">Please enter who this is for.</span></div>
+            <div class="field"><label for="r_occ">Occasion</label>
+              <select id="r_occ"><option>Birthday</option><option>Anniversary</option><option>Thinking of you</option><option>Congratulations</option><option>Apology</option><option>New baby</option><option>Get well soon</option><option>Just because</option></select>
+            </div>
+          </div>
+          <div class="field"><label for="r_addr">Street address</label><input type="text" id="r_addr" autocomplete="off" placeholder="123 Queen St W, Unit 4"><span class="msg">Please enter a delivery address.</span></div>
+          <div class="row3">
+            <div class="field"><label for="r_city">City</label><input type="text" id="r_city" value="Toronto"><span class="msg">Required.</span></div>
+            <div class="field"><label for="r_prov">Province</label><select id="r_prov"><option>ON</option><option>QC</option><option>BC</option><option>AB</option></select></div>
+            <div class="field"><label for="r_post">Postal code</label><input type="text" id="r_post" placeholder="M5H 2N2" maxlength="7"><span class="msg">Invalid postal code.</span></div>
+          </div>
+          <div class="field"><label for="r_phone">Recipient's phone <span style="color:var(--ink3)">(optional, for the courier)</span></label><input type="tel" id="r_phone" inputmode="tel"></div>
+
+          <h4>Delivery moment</h4>
+          <div class="field"><label for="d_date">Date it should arrive</label><input type="date" id="d_date"><span class="msg" id="d_dateMsg">Please choose a date.</span></div>
+          <div class="slots" id="slots"></div>
+          <div class="field" id="slotField" style="margin-top:6px"><span class="msg">Please choose a delivery time.</span></div>
+
+          <h4>Your message</h4>
+          <div class="field"><label for="m_card">Handwritten card <span style="color:var(--ink3)">(we'll write it for you)</span></label>
+            <textarea id="m_card" maxlength="240" placeholder="Happy birthday, Alex. Wishing you a year as wonderful as you are."></textarea><span class="counter" id="cnt">0 / 240</span></div>
+          <div class="field"><label for="m_note">Delivery notes <span style="color:var(--ink3)">(optional)</span></label>
+            <textarea id="m_note" style="min-height:72px" placeholder="Gate code, leave with concierge, ring twice…"></textarea></div>
+          <label class="check"><input type="checkbox" id="m_anon"> Keep it a surprise — send as “From: a secret admirer” instead of my name.</label>
+          <div class="nav-btns"><button type="button" class="btn ghost" onclick="back()">‹ Back</button><button class="btn" type="submit">Continue to payment</button></div>
+        </form>
+
+        <!-- Step 4 -->
+        <form class="step-view" data-step="4" onsubmit="event.preventDefault();pay()" novalidate>
+          <h3>Payment</h3>
+          <p class="hint">Your order is confirmed the moment payment goes through.</p>
+          <div class="demo"><span>ⓘ</span><span><b>Demo mode.</b> No real charge is made. Use test card <b>4242 4242 4242 4242</b>, any future expiry, any 3-digit CVC.</span></div>
+          <div class="field"><label for="p_name">Name on card</label><input type="text" id="p_name" autocomplete="cc-name"><span class="msg">Please enter the name on your card.</span></div>
+          <div class="field cardnum"><label for="p_num">Card number</label><input type="text" id="p_num" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456" maxlength="19"><span class="brand" id="brand"></span><span class="msg">Please enter a valid card number.</span></div>
+          <div class="row3" style="grid-template-columns:1fr 1fr 1fr">
+            <div class="field"><label for="p_exp">Expiry</label><input type="text" id="p_exp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY" maxlength="7"><span class="msg">Invalid or expired.</span></div>
+            <div class="field"><label for="p_cvc">CVC</label><input type="text" id="p_cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4"><span class="msg">Invalid CVC.</span></div>
+            <div class="field"><label for="p_zip">Billing postal</label><input type="text" id="p_zip" autocomplete="postal-code" maxlength="7"><span class="msg">Required.</span></div>
+          </div>
+          <label class="check"><input type="checkbox" id="p_terms"> I agree to the terms. Orders can be changed or cancelled up to 2 hours before delivery.</label>
+          <div class="field" style="margin-top:4px"><span class="msg" id="termsMsg">Please accept the terms to continue.</span></div>
+          <div class="nav-btns"><button type="button" class="btn ghost" onclick="back()">‹ Back</button><button class="btn lg" type="submit" id="payBtn">Pay <span id="payAmt"></span></button></div>
+        </form>
+      </div>
+
+      <aside class="sum" id="summary" aria-label="Order summary"></aside>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONFIRMATION ============ -->
+<div id="confirm" class="hidden">
+  <div class="wrap">
+    <svg class="tick" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46"/><path d="M30 52l14 14 27-30"/></svg>
+    <h2>It's on its way<br>to being perfect.</h2>
+    <p class="lead" id="cfLead"></p>
+    <div class="ordno">Order number <b id="cfNo"></b></div>
+    <div class="receipt" id="receipt"></div>
+    <p class="mailnote" id="mailNote"></p>
+    <div class="actions">
+      <button class="btn sec" onclick="downloadICS()">Add to calendar</button>
+      <button class="btn sec" onclick="window.print()">Print receipt</button>
+      <button class="btn" onclick="newOrder()">Send another gift</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- DATA ---------- */
+const CATS = [
+  {id:'birthday', label:'Birthday', occ:'Birthday', line:'Make their day start with a surprise, right on the stroke of midnight.'},
+  {id:'romance', label:'Romance', occ:'Anniversary', line:'For partners, anniversaries and big gestures.'},
+  {id:'celebrate', label:'Celebrate', occ:'Congratulations', line:'Promotions, graduations, new homes and new babies.'},
+  {id:'care', label:'Thinking of you', occ:'Thinking of you', line:'A warm, thoughtful way to say you\u2019re there for them.'}
+];
+const PACKAGES = [
+  {id:'b1', cat:'birthday', name:'The Sweet Start', tag:'Birthday', price:79, img:'https://images.unsplash.com/photo-1553135422-400ee5852b27?auto=format&fit=crop&w=900&q=80', alt:'Cupcake with a lit candle',
+   desc:'Simple, sweet and guaranteed to make them smile.',
+   items:['Six iced cupcakes in a keepsake box','Birthday candle set &amp; matches','Party poppers','Handwritten card']},
+  {id:'b2', cat:'birthday', name:'The Birthday Box', tag:'Birthday', price:139, badge:'Most popular', img:'https://images.unsplash.com/photo-1672853827236-e2ccf90761a1?auto=format&fit=crop&w=900&q=80', alt:'Wrapped birthday gift box with a bow',
+   desc:'A full unwrapping moment for a friend who deserves it.',
+   items:['Gourmet cupcakes (6)','Sparkling ros\u00e9 (750 ml)','Small-batch chocolate bar trio','Luxury candle','Handwritten card in a gift box']},
+  {id:'b3', cat:'birthday', name:'The Big Night', tag:'Birthday', price:229, img:'https://images.unsplash.com/photo-1583875762487-5f8f7c718d14?auto=format&fit=crop&w=900&q=80', alt:'Colourful birthday balloons',
+   desc:'Balloons, cake and bubbles. The whole party at their door.',
+   items:['Helium balloon bouquet (7)','Celebration cake (6 in)','Sparkling wine (750 ml)','Belgian truffle collection (12 pc)','Handwritten card &amp; confetti']},
+  {id:'r1', cat:'romance', name:'The Sweet Surprise', tag:'Romance', price:79, img:'https://images.unsplash.com/photo-1788521042909-3a7f486d0321?auto=format&fit=crop&w=900&q=80', alt:'Boxes of chocolate truffles',
+   desc:'A little luxury that says you were thinking of them.',
+   items:['Truffle collection (12 pc)','Three long-stem roses','Handwritten card']},
+  {id:'r2', cat:'romance', name:'Date Night In', tag:'Romance', price:149, badge:'Most popular', img:'https://images.unsplash.com/photo-1529521001454-2cf987c34008?auto=format&fit=crop&w=900&q=80', alt:'Glass of wine beside a bottle',
+   desc:'Everything for a perfect evening in.',
+   items:['Bottle of fine red wine','Dark chocolate truffles','Two luxury candles','Handwritten card']},
+  {id:'r3', cat:'romance', name:'The Grand Gesture', tag:'Romance', price:329, img:'https://images.unsplash.com/photo-1770558057593-e5cc24761dfc?auto=format&fit=crop&w=900&q=80', alt:'Red roses wrapped in black paper',
+   desc:'For the moments that deserve everything.',
+   items:['Two dozen long-stem roses, boxed','Vintage champagne (750 ml)','Grand chocolate atelier box','Two crystal flutes','Handwritten card &amp; polaroid print']},
+  {id:'c1', cat:'celebrate', name:'The Toast', tag:'Celebrate', price:89, img:'https://images.unsplash.com/photo-1580657274234-7339717f4541?auto=format&fit=crop&w=900&q=80', alt:'Champagne being poured into flutes',
+   desc:'Raise a glass to their big news.',
+   items:['Sparkling wine (750 ml)','Artisan shortbread tin','Handwritten card']},
+  {id:'c2', cat:'celebrate', name:'The Cheers Box', tag:'Celebrate', price:159, badge:'Most popular', img:'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=80', alt:'Colourful balloons',
+   desc:'Bubbles, balloons and something delicious to share.',
+   items:['Sparkling wine (750 ml)','Balloon bouquet (5)','Gourmet snack box','Handwritten card']},
+  {id:'c3', cat:'celebrate', name:'The Celebration', tag:'Celebrate', price:259, img:'https://images.unsplash.com/photo-1514242879996-d7b3bb2dd531?auto=format&fit=crop&w=900&q=80', alt:'Champagne chilling in an ice bucket',
+   desc:'For the milestones worth marking properly.',
+   items:['Champagne (750 ml) with ice bucket','Two crystal flutes','Truffle collection (12 pc)','Seasonal flower arrangement','Handwritten card']},
+  {id:'t1', cat:'care', name:'The Cuppa Care', tag:'Thinking of you', price:69, img:'https://images.unsplash.com/photo-1602891867080-1d56348202a3?auto=format&fit=crop&w=900&q=80', alt:'Hands holding a ceramic mug',
+   desc:'A warm hug in a box.',
+   items:['Loose-leaf tea trio','Wildflower honey','Ceramic mug','Handwritten card']},
+  {id:'t2', cat:'care', name:'The Fresh Blooms', tag:'Thinking of you', price:109, img:'https://images.unsplash.com/photo-1558021843-f9ab317ed0eb?auto=format&fit=crop&w=900&q=80', alt:'Hand-tied pink peony bouquet',
+   desc:'Fresh flowers and a quiet moment of calm.',
+   items:['Seasonal hand-tied bouquet','Soy candle, \u201cMidnight Fig\u201d','Handwritten card']},
+  {id:'t3', cat:'care', name:'The Comfort Hamper', tag:'Thinking of you', price:199, badge:'Most popular', img:'https://images.unsplash.com/photo-1773516035245-26f07b76c114?auto=format&fit=crop&w=900&q=80', alt:'Assorted chocolates in gift boxes',
+   desc:'Everything they need to rest, recharge and feel looked after.',
+   items:['Cashmere-blend throw','Assorted chocolate gift boxes','Tea &amp; honey set','Luxury candle','Handwritten card']}
+];
+const ADDONS = [
+  {id:'balloons', name:'Balloon bouquet', desc:'Six foil &amp; latex balloons, helium-filled', price:24},
+  {id:'bear', name:'Heirloom plush bear', desc:'Soft, ribbon-tied, gift-boxed', price:29},
+  {id:'extra', name:'Extra champagne truffles', desc:'A box of six, hand-rolled', price:18}
+];
+const SLOTS = [
+  {id:'0000', label:'On the stroke of midnight', sub:'12:00 AM · +$25', h:0, m:0, fee:25},
+  {id:'0030', label:'12:30 AM', sub:'Just after midnight', h:0, m:30, fee:0},
+  {id:'0700', label:'First thing', sub:'7:00 AM', h:7, m:0, fee:0},
+  {id:'2100', label:'Evening', sub:'9:00 PM', h:21, m:0, fee:0},
+  {id:'2300', label:'The eleventh hour', sub:'11:00 PM', h:23, m:0, fee:0},
+  {id:'1200', label:'Midday', sub:'12:00 PM', h:12, m:0, fee:0}
+];
+const DELIVERY_FEE = 15, TAX = 0.13, LEAD_HOURS = 2;
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const money = n => '$' + n.toFixed(2);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate = d => new Intl.DateTimeFormat('en-CA',{weekday:'long',month:'long',day:'numeric',year:'numeric'}).format(d);
+const fmtTime = d => new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit'}).format(d);
+
+/* ---------- STATE ---------- */
+const state = {step:1, cat:'birthday', pkg:null, addons:new Set(), slot:null, order:null};
+const STORE_KEY = 'eleventhhour.orders.v1';
+const loadOrders = () => { try { return JSON.parse(localStorage.getItem(STORE_KEY)||'{}'); } catch(e){ return {}; } };
+const saveOrder = o => { try { const all = loadOrders(); all[o.no] = o; localStorage.setItem(STORE_KEY, JSON.stringify(all)); } catch(e){} };
+
+/* ---------- HOME ---------- */
+function chipsHTML(){ return CATS.map(c=>`<button type="button" class="chip ${c.id===state.cat?'on':''}" role="tab" aria-selected="${c.id===state.cat}" data-cat="${c.id}">${c.label}</button>`).join(''); }
+function renderPackages(){
+  $('#cats').innerHTML = chipsHTML();
+  $('#catLine').textContent = CATS.find(c=>c.id===state.cat).line;
+  $('#pkgGrid').innerHTML = PACKAGES.filter(p=>p.cat===state.cat).map(p => `
+    <article class="pkg">
+      ${p.badge?`<span class="badge">${p.badge}</span>`:''}
+      <div class="art"><img src="${p.img}" alt="${p.alt}" loading="lazy"></div>
+      <div class="body">
+        <span class="tag">${p.tag}</span>
+        <h3>${p.name}</h3>
+        <p class="desc">${p.desc}</p>
+        <ul>${p.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+        <div class="price"><b>${money(p.price).replace('.00','')}</b><span>+ delivery &amp; tax</span></div>
+        <button class="btn" onclick="startOrder('${p.id}')">Select ${p.name.replace('The ','')}</button>
+      </div>
+    </article>`).join('');
+}
+function tickClock(){
+  const n = new Date();
+  const h = n.getHours(), m = String(n.getMinutes()).padStart(2,'0');
+  const h12 = h%12||12;
+  $('#clock').innerHTML = `${h12}<b>:</b>${m}`;
+  const mid = new Date(n); mid.setHours(24,0,0,0);
+  const diff = mid - n, hh = Math.floor(diff/36e5), mm = Math.floor(diff%36e5/6e4);
+  const left = hh>0 ? `${hh} hr ${mm} min` : `${mm} min`;
+  $('#clockLabel').innerHTML = (h>=0 && h<5)
+    ? 'Open through the small hours. <em>Delivering all night.</em>'
+    : `${left} until midnight. <em>Plenty of time to plan it.</em>`;
+}
+function observeReveal(){
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+  $$('.reveal:not(.in)').forEach(el => io.observe(el));
+}
+function showView(v){
+  ['home','checkout','confirm'].forEach(id => $('#'+id).classList.toggle('hidden', id!==v));
+}
+function goHome(anchor){
+  const wasHome = !$('#home').classList.contains('hidden');
+  showView('home');
+  if(anchor){ setTimeout(()=>{ const el=document.getElementById(anchor); if(el) el.scrollIntoView({behavior:wasHome?'smooth':'auto'}); }, 30); }
+  else window.scrollTo(0,0);
+  observeReveal();
+}
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),2600); }
+
+/* ---------- CHECKOUT ---------- */
+const TITLES = [
+  ['Choose your package.','Select a package and any finishing touches.'],
+  ['A little about you.','So we can send your confirmation.'],
+  ['Where and when.','The details that make it feel effortless.'],
+  ['Confirm and pay.','Secure checkout. Done in under a minute.']
+];
+function startOrder(id){
+  state.pkg = id; state.cat = pkgObj().cat; setOccasion(); state.step = 1;
+  showView('checkout'); window.scrollTo(0,0);
+  renderOpts(); setStep(1);
+  initDate();
+}
+function setOccasion(){ $('#r_occ').value = CATS.find(c=>c.id===state.cat).occ; }
+function pkgObj(){ return PACKAGES.find(p=>p.id===state.pkg); }
+function renderOpts(){
+  $('#coCats').innerHTML = chipsHTML();
+  $('#pkgOpts').innerHTML = PACKAGES.filter(p=>p.cat===state.cat).map(p => `
+    <div class="opt ${p.id===state.pkg?'sel':''}" role="radio" aria-checked="${p.id===state.pkg}" tabindex="0" data-pkg="${p.id}">
+      <span class="dot"></span><div class="t"><b>${p.name}</b><span>${p.items.length} items · ${p.desc}</span></div><span class="p">${money(p.price).replace('.00','')}</span>
+    </div>`).join('');
+  $('#addonOpts').innerHTML = ADDONS.map(a => `
+    <div class="opt chk ${state.addons.has(a.id)?'sel':''}" role="checkbox" aria-checked="${state.addons.has(a.id)}" tabindex="0" data-addon="${a.id}">
+      <span class="dot"></span><div class="t"><b>${a.name}</b><span>${a.desc}</span></div><span class="p">+${money(a.price).replace('.00','')}</span>
+    </div>`).join('');
+  renderSummary();
+}
+document.addEventListener('click', e => {
+  const ct = e.target.closest('[data-cat]'); if(ct){ state.cat = ct.dataset.cat; if(!$('#checkout').classList.contains('hidden')){ if(pkgObj().cat!==state.cat) state.pkg = PACKAGES.find(x=>x.cat===state.cat&&x.badge).id; setOccasion(); renderOpts(); } else renderPackages(); return; }
+  const p = e.target.closest('[data-pkg]'); if(p){ state.pkg = p.dataset.pkg; renderOpts(); }
+  const a = e.target.closest('[data-addon]'); if(a){ const id=a.dataset.addon; state.addons.has(id)?state.addons.delete(id):state.addons.add(id); renderOpts(); }
+  const s = e.target.closest('[data-slot]'); if(s && !s.classList.contains('dis')){ state.slot = s.dataset.slot; $('#slotField').classList.remove('err'); renderSlots(); renderSummary(); }
+});
+document.addEventListener('keydown', e => {
+  if((e.key===' '||e.key==='Enter') && e.target.matches('.opt,.logo')){ e.preventDefault(); e.target.click(); }
+});
+
+function totals(){
+  const p = pkgObj(); if(!p) return {sub:0,addons:0,del:0,mid:0,tax:0,total:0};
+  const addons = [...state.addons].reduce((s,id)=>s+ADDONS.find(a=>a.id===id).price,0);
+  const slot = SLOTS.find(s=>s.id===state.slot);
+  const mid = slot ? slot.fee : 0;
+  const sub = p.price + addons;
+  const taxable = sub + DELIVERY_FEE + mid;
+  const tax = Math.round(taxable*TAX*100)/100;
+  return {sub:p.price, addons, del:DELIVERY_FEE, mid, tax, total: taxable+tax};
+}
+function renderSummary(){
+  const p = pkgObj(); if(!p) return;
+  const t = totals();
+  const slot = SLOTS.find(s=>s.id===state.slot), dv = $('#d_date').value;
+  let meta = '';
+  if(state.step>=3 && ($('#r_name').value || dv)){
+    meta = `<div class="meta">${$('#r_name').value?`For <b>${esc($('#r_name').value)}</b><br>`:''}${dv&&slot?`Arrives <b>${fmtDate(parseDate(dv))}</b> at <b>${slot.id==='0000'?'12:00 AM':slot.sub.split(' · ')[0].replace('Just after midnight','12:30 AM')}</b>`:''}</div>`;
+  }
+  $('#summary').innerHTML = `
+    <h3>Order summary</h3>
+    <div class="pk"><div class="sw" style="background-image:url(${p.img.replace('w=900','w=200')})"></div><div><b>${p.name}</b><span>${p.items.length} items</span></div></div>
+    <div class="ln"><span>Package</span><span>${money(t.sub)}</span></div>
+    ${[...state.addons].map(id=>{const a=ADDONS.find(x=>x.id===id);return `<div class="ln"><span>${a.name}</span><span>${money(a.price)}</span></div>`}).join('')}
+    <div class="ln"><span>Delivery</span><span>${money(t.del)}</span></div>
+    ${t.mid?`<div class="ln"><span>Midnight delivery</span><span>${money(t.mid)}</span></div>`:''}
+    <div class="ln"><span>HST (13%)</span><span>${money(t.tax)}</span></div>
+    <div class="ln tot"><span>Total</span><span>${money(t.total)}</span></div>
+    ${meta}
+    <div class="secure">🔒 Encrypted checkout</div>`;
+  const pa = $('#payAmt'); if(pa) pa.textContent = money(t.total);
+}
+function setStep(n){
+  state.step = n;
+  $$('.step-view').forEach(f => f.classList.toggle('on', +f.dataset.step===n));
+  $$('#prog div').forEach((d,i)=>d.classList.toggle('done', i<n));
+  $$('#progL span').forEach((s,i)=>s.classList.toggle('on', i===n-1));
+  $('#coTitle').textContent = TITLES[n-1][0]; $('#coSub').textContent = TITLES[n-1][1];
+  if(n===3) renderSlots();
+  renderSummary();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function back(){ if(state.step>1) setStep(state.step-1); }
+function next(){
+  if(state.step===2 && !validate2()) return;
+  if(state.step===3 && !validate3()) return;
+  setStep(state.step+1);
+}
+
+/* ---------- VALIDATION ---------- */
+function setErr(id, bad){ const f = $('#'+id).closest('.field'); f.classList.toggle('err', bad); return bad; }
+function validate2(){
+  let bad = false, firstBad = null;
+  const chk = (id, test) => { const b = setErr(id, !test($('#'+id).value.trim())); if(b && !firstBad) firstBad = id; bad = bad || b; };
+  chk('c_first', v=>v.length>0); chk('c_last', v=>v.length>0);
+  chk('c_email', v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v));
+  chk('c_phone', v=>v.replace(/\D/g,'').length>=10);
+  if(firstBad) $('#'+firstBad).focus();
+  return !bad;
+}
+function validate3(){
+  let bad = false, firstBad = null;
+  const chk = (id, test) => { const b = setErr(id, !test($('#'+id).value.trim())); if(b && !firstBad) firstBad = id; bad = bad || b; };
+  chk('r_name', v=>v.length>0); chk('r_addr', v=>v.length>4); chk('r_city', v=>v.length>0);
+  chk('r_post', v=>/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(v));
+  chk('d_date', v=>!!v);
+  if(!state.slot){ $('#slotField').classList.add('err'); bad = true; if(!firstBad) firstBad='slots'; }
+  if(firstBad){ const el=$('#'+firstBad); el.scrollIntoView({behavior:'smooth',block:'center'}); if(el.focus && firstBad!=='slots') el.focus(); }
+  return !bad;
+}
+function validate4(){
+  let bad = false;
+  const chk = (id, test) => { const b = setErr(id, !test($('#'+id).value.trim())); bad = bad || b; };
+  chk('p_name', v=>v.length>1);
+  chk('p_num', v=>luhn(v.replace(/\s/g,'')));
+  chk('p_exp', v=>{
+    const m = v.match(/^(\d{2})\s*\/\s*(\d{2})$/); if(!m) return false;
+    const mo=+m[1], yr=2000+ +m[2]; if(mo<1||mo>12) return false;
+    const end = new Date(yr, mo, 1); return end > new Date();
+  });
+  chk('p_cvc', v=>/^\d{3,4}$/.test(v));
+  chk('p_zip', v=>v.length>=3);
+  const termsBad = !$('#p_terms').checked; $('#termsMsg').parentElement.classList.toggle('err', termsBad);
+  return !(bad || termsBad);
+}
+function luhn(n){
+  if(!/^\d{13,19}$/.test(n)) return false;
+  let s=0, d=false;
+  for(let i=n.length-1;i>=0;i--){ let x=+n[i]; if(d){ x*=2; if(x>9) x-=9; } s+=x; d=!d; }
+  return s%10===0;
+}
+// clear errors as people type
+document.addEventListener('input', e => { const f = e.target.closest('.field'); if(f) f.classList.remove('err'); });
+
+/* ---------- DATE & SLOTS ---------- */
+const pad = n => String(n).padStart(2,'0');
+const toISO = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseDate = s => { const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); };
+function initDate(){
+  const d = $('#d_date'); const today = new Date();
+  d.min = toISO(today);
+  const max = new Date(today); max.setDate(max.getDate()+90); d.max = toISO(max);
+}
+function slotDate(slot){
+  const base = parseDate($('#d_date').value); base.setHours(slot.h, slot.m, 0, 0); return base;
+}
+function renderSlots(){
+  const hasDate = !!$('#d_date').value;
+  const limit = new Date(Date.now() + LEAD_HOURS*36e5);
+  const el = $('#slots');
+  if(!hasDate){ el.innerHTML = '<p class="hint" style="grid-column:1/-1;margin:0">Choose a date to see available delivery times.</p>'; return; }
+  let any = false;
+  el.innerHTML = SLOTS.map(s => {
+    const ok = slotDate(s) >= limit; any = any || ok;
+    if(!ok && state.slot===s.id) state.slot = null;
+    return `<div class="opt ${state.slot===s.id?'sel':''} ${ok?'':'dis'}" data-slot="${s.id}" role="radio" aria-checked="${state.slot===s.id}" tabindex="${ok?0:-1}"><span class="dot"></span><div class="t"><b>${s.label}</b><span>${ok?s.sub:'Too soon — we need '+LEAD_HOURS+' hrs'}</span></div></div>`;
+  }).join('');
+  if(!any) el.insertAdjacentHTML('beforeend','<p class="hint" style="grid-column:1/-1;margin:6px 0 0;color:var(--red)">No slots left on this date. Please choose tomorrow or later.</p>');
+}
+$('#d_date').addEventListener('change', () => { renderSlots(); renderSummary(); });
+$('#m_card').addEventListener('input', e => { $('#cnt').textContent = e.target.value.length + ' / 240'; });
+['r_name'].forEach(id => $('#'+id).addEventListener('input', renderSummary));
+
+/* ---------- INPUT FORMATTING ---------- */
+$('#p_num').addEventListener('input', e => {
+  const v = e.target.value.replace(/\D/g,'').slice(0,16);
+  e.target.value = v.replace(/(.{4})/g,'$1 ').trim();
+  $('#brand').textContent = /^4/.test(v)?'VISA':/^(5[1-5]|2[2-7])/.test(v)?'MASTERCARD':/^3[47]/.test(v)?'AMEX':'';
+});
+$('#p_exp').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,4);
+  if(v.length>=3) v = v.slice(0,2)+' / '+v.slice(2);
+  e.target.value = v;
+});
+$('#p_cvc').addEventListener('input', e => e.target.value = e.target.value.replace(/\D/g,'').slice(0,4));
+$('#c_phone').addEventListener('input', e => e.target.value = fmtPhone(e.target.value));
+$('#r_phone').addEventListener('input', e => e.target.value = fmtPhone(e.target.value));
+function fmtPhone(v){
+  const d = v.replace(/\D/g,'').slice(0,10);
+  if(d.length<4) return d;
+  if(d.length<7) return `(${d.slice(0,3)}) ${d.slice(3)}`;
+  return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
+}
+$('#r_post').addEventListener('input', e => {
+  let v = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
+  e.target.value = v.length>3 ? v.slice(0,3)+' '+v.slice(3) : v;
+});
+$('#p_zip').addEventListener('input', e => e.target.value = e.target.value.toUpperCase().slice(0,7));
+
+/* ---------- PAY + CONFIRM ---------- */
+function newOrderNo(){
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s='';
+  for(let i=0;i<6;i++) s+=chars[Math.floor(Math.random()*chars.length)];
+  return '11H-'+s;
+}
+function pay(){
+  if(!validate4()) return;
+  const btn = $('#payBtn'); btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Processing…';
+  setTimeout(() => {
+    const slot = SLOTS.find(s=>s.id===state.slot);
+    const when = slotDate(slot);
+    const t = totals(), p = pkgObj();
+    const num = $('#p_num').value.replace(/\s/g,'');
+    const order = {
+      no:newOrderNo(), placed:new Date().toISOString(), status:'scheduled',
+      pkg:{id:p.id,name:p.name,items:p.items.map(i=>i.replace(/&amp;/g,'&')),price:p.price},
+      addons:[...state.addons].map(id=>{const a=ADDONS.find(x=>x.id===id);return {name:a.name,price:a.price}}),
+      totals:t,
+      customer:{first:$('#c_first').value.trim(),last:$('#c_last').value.trim(),email:$('#c_email').value.trim(),phone:$('#c_phone').value.trim()},
+      recipient:{name:$('#r_name').value.trim(),occasion:$('#r_occ').value,addr:$('#r_addr').value.trim(),city:$('#r_city').value.trim(),prov:$('#r_prov').value,post:$('#r_post').value.trim(),phone:$('#r_phone').value.trim()},
+      delivery:{iso:when.toISOString(),slot:slot.label},
+      message:$('#m_card').value.trim(), notes:$('#m_note').value.trim(), anon:$('#p_name') && $('#m_anon').checked,
+      card:{brand:$('#brand').textContent||'Card', last4:num.slice(-4)}
+    };
+    saveOrder(order); state.order = order;
+    btn.disabled = false; btn.innerHTML = 'Pay <span id="payAmt"></span>';
+    renderConfirm(order); showView('confirm'); window.scrollTo(0,0);
+  }, 1900);
+}
+function receiptHTML(o){
+  const when = new Date(o.delivery.iso);
+  const placed = new Date(o.placed);
+  return `
+    <div class="sec"><div class="k">Delivering</div><div class="v"><b>${esc(fmtDate(when))}</b><small>${esc(o.delivery.slot)} · ${esc(fmtTime(when))}</small></div></div>
+    <div class="sec"><div class="k">To</div><div class="v"><b>${esc(o.recipient.name)}</b> · ${esc(o.recipient.occasion)}<small>${esc(o.recipient.addr)}, ${esc(o.recipient.city)}, ${esc(o.recipient.prov)} ${esc(o.recipient.post)}</small>${o.notes?`<small>Notes: ${esc(o.notes)}</small>`:''}</div></div>
+    <div class="sec"><div class="k">Card message ${o.anon?'· from a secret admirer':'· from '+esc(o.customer.first)}</div><div class="v">${o.message?`“${esc(o.message)}”`:'<small>No message added — we’ll include a blank card.</small>'}</div></div>
+    <div class="sec"><div class="k">${esc(o.pkg.name)}</div><div class="v">${o.pkg.items.map(i=>`<small style="color:var(--ink)">· ${esc(i)}</small>`).join('')}${o.addons.map(a=>`<small style="color:var(--ink)">· ${esc(a.name)} (+${money(a.price)})</small>`).join('')}</div></div>
+    <div class="sec">
+      <div class="ln"><span>Package &amp; add-ons</span><span>${money(o.totals.sub+o.totals.addons)}</span></div>
+      <div class="ln"><span>Delivery${o.totals.mid?' + midnight':''}</span><span>${money(o.totals.del+o.totals.mid)}</span></div>
+      <div class="ln"><span>HST</span><span>${money(o.totals.tax)}</span></div>
+      <div class="ln tot"><span>Paid · ${esc(o.card.brand)} ····${esc(o.card.last4)}</span><span>${money(o.totals.total)}</span></div>
+    </div>
+    <div class="sec"><div class="k">Status</div><div class="timeline">
+      <div class="tl done"><i></i><div>Order confirmed<small>${esc(fmtDate(placed))}, ${esc(fmtTime(placed))}</small></div></div>
+      <div class="tl"><i></i><div>Being hand-assembled<small>Starts a few hours before delivery</small></div></div>
+      <div class="tl"><i></i><div>Out for delivery<small>You’ll get a text when the courier is close</small></div></div>
+      <div class="tl"><i></i><div>Delivered<small>${esc(fmtTime(when))}</small></div></div>
+    </div></div>`;
+}
+function renderConfirm(o){
+  $('#cfNo').textContent = o.no;
+  const when = new Date(o.delivery.iso);
+  $('#cfLead').textContent = `${o.recipient.name}'s ${o.pkg.name.replace('The ','')} arrives ${fmtDate(when).split(',')[0]} at ${fmtTime(when)}. Thank you, ${o.customer.first}.`;
+  $('#receipt').innerHTML = receiptHTML(o);
+  $('#mailNote').textContent = `A confirmation has been sent to ${o.customer.email} and a text to ${o.customer.phone}. (Demo: no real email or SMS is sent.)`;
+}
+function newOrder(){
+  state.pkg = null; state.addons.clear(); state.slot = null; state.order = null;
+  $$('#checkout input:not([type=checkbox]), #checkout textarea').forEach(i => { if(i.id!=='r_city') i.value=''; });
+  $$('#checkout input[type=checkbox]').forEach(i=>i.checked=false);
+  $('#brand').textContent=''; $('#cnt').textContent='0 / 240';
+  goHome('packages');
+}
+function downloadICS(){
+  const o = state.order; if(!o) return;
+  const d = new Date(o.delivery.iso), e = new Date(d.getTime()+30*6e4);
+  const f = x => x.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Eleventh Hour//Demo//EN','BEGIN:VEVENT',
+   'UID:'+o.no+'@eleventhhour.demo','DTSTAMP:'+f(new Date()),'DTSTART:'+f(d),'DTEND:'+f(e),
+   'SUMMARY:Eleventh Hour delivery for '+o.recipient.name,
+   'LOCATION:'+o.recipient.addr+', '+o.recipient.city,'DESCRIPTION:Order '+o.no+' — '+o.pkg.name,
+   'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([ics],{type:'text/calendar'})); a.download = o.no+'.ics'; a.click();
+  toast('Calendar event downloaded');
+}
+
+/* ---------- TRACK ---------- */
+function trackOrder(e){
+  e.preventDefault();
+  const no = $('#trackInput').value.trim().toUpperCase();
+  const o = loadOrders()[no]; const out = $('#trackResult');
+  if(!o){ out.innerHTML = `<div class="step" style="text-align:center"><p>We couldn’t find an order <b>${esc(no||'—')}</b>. Orders placed in this demo are stored in this browser only.</p></div>`; return; }
+  out.innerHTML = `<div class="receipt" style="margin:0">${receiptHTML(o)}</div>`;
+}
+
+/* ---------- INIT ---------- */
+renderPackages(); tickClock(); setInterval(tickClock, 15000); observeReveal();
+</script>
+</body>
+</html>
